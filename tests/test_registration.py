@@ -18,4 +18,8 @@ def test_registration_form(driver):
     assert registration.is_terms_accepted()
 
     registration.submit_registration()
+
+    assert registration.is_registration_successful(), (
+        "Registration confirmation message was not displayed."
+    )
     #time.sleep(15)

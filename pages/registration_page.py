@@ -93,3 +93,10 @@ class RegistrationPage:
         self.wait.until(
             EC.element_to_be_clickable(R.REGISTER_BUTTON)
         ).click()
+
+    def is_registration_successful(self):
+        return self.wait.until(
+            EC.visibility_of_element_located(
+                R.SUCCESS_MESSAGE
+            )
+        ).is_displayed()

@@ -48,6 +48,11 @@ class RegistrationLocators:
         "//button[normalize-space()='Regisztráció']"
     )
 
+    SUCCESS_MESSAGE = (
+        By.XPATH,
+        "//p[contains(normalize-space(), 'Elküldtük a megerősítő linket')]"
+    )
+
     @staticmethod
     def school_option(name):
         return (
