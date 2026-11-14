@@ -3,19 +3,68 @@ from selenium.webdriver.common.by import By
 
 
 class RegistrationLocators:
-    NAME = (By.XPATH, "//label[normalize-space()='Név']/following-sibling::input")
-    EMAIL = (By.XPATH, "//label[normalize-space()='Email']/following-sibling::input")
-    PASSWORD = (By.XPATH, "//label[normalize-space()='Jelszó']/following-sibling::input")
-
-    SCHOOL = (By.XPATH, "//input[contains(@placeholder, 'iskolád')]")
-    SCHOOL_OPTION = (
+    NAME = (
         By.XPATH,
-        "//*[normalize-space()='Salgótarjáni Madách Imre Gimnázium']"
+        "//label[normalize-space()='Név']/following-sibling::input"
     )
 
-    GRADE = (By.XPATH, "//button[contains(., 'Évfolyam')]")
-    CLASS = (By.XPATH, "//button[contains(., 'Jel')]")
+    EMAIL = (
+        By.XPATH,
+        "//label[normalize-space()='Email']/following-sibling::input"
+    )
 
-    TERMS_CHECKBOX = (By.XPATH, "//input[@type='checkbox']")
+    PASSWORD = (
+        By.XPATH,
+        "//label[normalize-space()='Jelszó']/following-sibling::input"
+    )
 
-    REGISTER_BUTTON = (By.XPATH, "//button[normalize-space()='Regisztráció']")
+    SCHOOL = (
+        By.XPATH,
+        "//input[contains(@placeholder, 'iskolád')]"
+    )
+
+    GRADE = (
+        By.XPATH,
+        "//*[@id='class-grade']"
+    )
+
+    GRADE_LIST = (
+        By.XPATH,
+        "//div[@role='listbox']"
+    )
+
+    CLASS = (
+        By.XPATH,
+        "//button[contains(., 'Jel')]"
+    )
+
+    TERMS_CHECKBOX = (
+        By.XPATH,
+        "//input[@type='checkbox']"
+    )
+
+    REGISTER_BUTTON = (
+        By.XPATH,
+        "//button[normalize-space()='Regisztráció']"
+    )
+
+    @staticmethod
+    def school_option(name):
+        return (
+            By.XPATH,
+            f"//*[normalize-space()='{name}']"
+        )
+
+    @staticmethod
+    def grade_option(grade):
+        return (
+            By.XPATH,
+            f"//div[@role='listbox']//button[normalize-space()='{grade}. évfolyam']"
+        )
+
+    @staticmethod
+    def class_option(class_name):
+        return (
+            By.XPATH,
+            f"//*[normalize-space()='{class_name}']"
+        )

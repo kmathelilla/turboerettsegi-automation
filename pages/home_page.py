@@ -1,14 +1,12 @@
 
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from locators.home_locators import HomeLocators as H
 
 
 class HomePage:
     URL = "https://turboerettsegi.hu/"
-
-    LOGIN_BUTTON = (By.CSS_SELECTOR, "a[href='/belepes']")
-    REGISTER_BUTTON = (By.CSS_SELECTOR, "a[href='/regisztracio']")
 
     def __init__(self, driver):
         self.driver = driver
@@ -19,10 +17,10 @@ class HomePage:
 
     def go_to_login(self):
         self.wait.until(
-            EC.element_to_be_clickable(self.LOGIN_BUTTON)
+            EC.element_to_be_clickable(H.LOGIN_BUTTON)
         ).click()
 
     def go_to_registration(self):
         self.wait.until(
-            EC.element_to_be_clickable(self.REGISTER_BUTTON)
+            EC.element_to_be_clickable(H.REGISTER_BUTTON)
         ).click()

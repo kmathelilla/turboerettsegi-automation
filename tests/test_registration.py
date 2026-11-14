@@ -1,26 +1,21 @@
+import time
 
-from selenium.webdriver.common.by import By
-
-from pages.home_page import HomePage
+from data.registration_data import REGISTRATION_DATA
 from pages.registration_page import RegistrationPage
 
 
 def test_registration_form(driver):
-    home = HomePage(driver)
-    home.open()
-    home.go_to_registration()
-
     registration = RegistrationPage(driver)
+    registration.open()
 
-    registration.fill_registration(
-        name="Test User",
-        email="test@example.com",
-        password="TestPassword123!"
+    registration.fill_registration(**REGISTRATION_DATA)
+
+    assert (
+        registration.get_email_value()
+        == REGISTRATION_DATA["email"]
     )
 
-    email_field = driver.find_element(
-        By.XPATH,
-        "//label[normalize-space()='Email']/following-sibling::input"
-    )
+    assert registration.is_terms_accepted()
 
-    assert email_field.get_attribute("value") == "test@example.com"
+    registration.submit_registration()
+    #time.sleep(15)

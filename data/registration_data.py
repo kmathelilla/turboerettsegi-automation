@@ -1,6 +1,6 @@
 
 REGISTRATION_DATA = {
-    "name": "Test Elek",
+    "name": "Hello Martin",
     "email": "testelek@example.com",
     "password": "TestPassword123!",
     "school": "Madách Imre Gimnázium",

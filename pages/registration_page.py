@@ -6,7 +6,6 @@ from locators.registration_locators import RegistrationLocators as R
 
 
 class RegistrationPage:
-
     URL = "https://turboerettsegi.hu/regisztracio"
 
     def __init__(self, driver):
@@ -41,7 +40,9 @@ class RegistrationPage:
         ).send_keys(school)
 
         self.wait.until(
-            EC.element_to_be_clickable(R.SCHOOL_OPTION)
+            EC.element_to_be_clickable(
+                R.school_option(school_option)
+            )
         ).click()
 
         # Grade dropdown
@@ -50,7 +51,13 @@ class RegistrationPage:
         ).click()
 
         self.wait.until(
-            EC.element_to_be_clickable(R.grade_option(grade))
+            EC.visibility_of_element_located(R.GRADE_LIST)
+        )
+
+        self.wait.until(
+            EC.element_to_be_clickable(
+                R.grade_option(grade)
+            )
         ).click()
 
         # Class dropdown
@@ -59,7 +66,9 @@ class RegistrationPage:
         ).click()
 
         self.wait.until(
-            EC.element_to_be_clickable(R.class_option(class_name))
+            EC.element_to_be_clickable(
+                R.class_option(class_name)
+            )
         ).click()
 
         # Accept terms
@@ -74,3 +83,13 @@ class RegistrationPage:
         return self.wait.until(
             EC.visibility_of_element_located(R.EMAIL)
         ).get_attribute("value")
+
+    def is_terms_accepted(self):
+        return self.wait.until(
+            EC.presence_of_element_located(R.TERMS_CHECKBOX)
+        ).is_selected()
+
+    def submit_registration(self):
+        self.wait.until(
+            EC.element_to_be_clickable(R.REGISTER_BUTTON)
+        ).click()
